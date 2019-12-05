@@ -1,0 +1,80 @@
+package com.example.controlefinanceiro.despesa;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import com.example.controlefinanceiro.R;
+
+public class DespesaView extends AppCompatActivity {
+
+    private Button bt_cadDespesa;
+    private Button bt_listDespesa;
+    private Button bt_geRelatorio;
+    private Button bt_voltar;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_despesa_view);
+
+        configurarBotoes(); acaoBotao();
+    }
+
+    private void configurarBotoes() {
+
+        bt_cadDespesa = findViewById(R.id.bt_cadDespesa);
+        bt_listDespesa = findViewById(R.id.bt_listDespesa);
+        bt_geRelatorio = findViewById(R.id.bt_gerDespesa);
+        bt_voltar = findViewById(R.id.bt_voltar);
+    }
+
+    private void acaoBotao(){
+
+        bt_cadDespesa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DespesaView.this,CadDespesa.class));
+            }
+        });
+
+        bt_listDespesa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DespesaView.this,ListDespesa.class));
+            }
+        });
+
+        bt_voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_principal,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.menuPrincipal) {
+            finish();
+            return true;
+        }
+        return onOptionsItemSelected(item);
+    }
+
+}

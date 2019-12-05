@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Controle Financeiro</string>
+    <string name="receita">Receita</string>
+    <string name="despesa">Despesa</string>
+
+    <string name="descricao">Descrição:</string>
+    <string name="valor">Valor:</string>
+    <string name="tipo">Tipo:</string>
+    <string name="fixa">Fixa</string>
+    <string name="variavel">Variável</string>
+    <string name="categoria">Categoria:</string>
+    <string-array name="catReceita">
+        <item>Selecione uma opção</item>
+        <item>Salário</item>
+        <item>Investimento</item>
+        <item>Venda</item>
+        <item>Outras</item>
+    </string-array>
+
+    <string name="adicionar">Cadastrar Receita</string>
+    <string name="listar">Listar Receitas</string>
+    <string name="relatorio">Gerar Relatório</string>
+    <string name="saldo">Meu saldo geral</string>
+    <string name="verReceitas">Total de Receitas</string>
+    <string name="verDespesas">Total de Despesas</string>
+
+    <string name="cadDespesa">Cadastrar Despesa</string>
+    <string name="listDespesa">Listar Despesas</string>
+    <string-array name="catDespesa">
+        <item>Selecione uma opção</item>
+        <item>Alimentação</item>
+        <item>Casa</item>
+        <item>Saúde</item>
+        <item>Transporte</item>
+        <item>Outras</item>
+    </string-array>
+
+    <string name="cadastrar">Cadastrar</string>
+    <string name="atualizar">Atualizar</string>
+    <string name="excluir">Excluir</string>
+    <string name="buscar">Buscar Receita</string>
+    <string name="sobre">Sobre</string>
+
+    <string name="sair">Sair</string>
+    <string name="voltar">Voltar</string>
+    <string name="cancelar">Cancelar</string>
+
+    <string name="charMoeda">[R,$.]</string>
+    <string name="tempo_splash">3000</string>
+
+    <string name="info">º Sistema de Controle Financeiro desenvolvido para a disciplina de Dispositivos Móveis.</string>
+    <string name="menuprincipal">Menu Principal</string>
+
+</resources>

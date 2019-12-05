@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#66AEEE</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="vermelho">#FF0000</color>
+    <color name="verde">#41F304</color>
+    <color name="branco">#FFFFFF</color>
+    <color name="preto">#0A0A0A</color>
+    <color name="cinza">#B4B3B3</color>
+    <color name="cinzaclaro">#F5F5F5</color>
+</resources>
