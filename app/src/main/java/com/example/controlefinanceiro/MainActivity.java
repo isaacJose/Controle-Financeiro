@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_saldoTotal;
     private Button bt_receita;
     private Button bt_despesa;
-    private Button bt_sair;
+    //private Button bt_sair;
 
     private ReceitaDAO receitaDAO;
     private DespesaDAO despesaDAO;
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         tv_saldoTotal = findViewById(R.id.tv_saldoTotal);
         bt_receita = findViewById(R.id.bt_receita);
         bt_despesa = findViewById(R.id.bt_despesa);
-        bt_sair = findViewById(R.id.bt_sair);
+        //bt_sair = findViewById(R.id.bt_sair);
 
     }
 
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bt_sair.setOnClickListener(new View.OnClickListener() {
+        /*bt_sair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                new AlertDialog.Builder(MainActivity.this)
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         .setNegativeButton("NÃO",null)
                         .show();
             }
-        });
+        });*/
     }
 
     public boolean onCreateOptionsMenu(Menu menu){

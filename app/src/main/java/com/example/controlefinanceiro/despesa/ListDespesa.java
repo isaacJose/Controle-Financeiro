@@ -90,9 +90,7 @@ public class ListDespesa extends AppCompatActivity {
     public void buscaDespesa(String nome){
         despesasfiltradas.clear();
         for(Despesa despesa: despesas){
-            if(despesa.getDescricao().toLowerCase().contains(nome.toLowerCase()) ||
-                    despesa.getTipo().toLowerCase().contains(nome.toLowerCase()) ||
-                    despesa.getCategoria().toLowerCase().contains(nome.toLowerCase())){ //deixando letras minúsculas e verificando se nome e descrição
+            if(despesa.getDescricao().toLowerCase().contains(nome.toLowerCase())){ //deixando letras minúsculas e verificando se nome e descrição
                 despesasfiltradas.add(despesa);
             }
         }
@@ -124,7 +122,27 @@ public class ListDespesa extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item){
         int id = item.getItemId();
 
-        if (id == R.id.Excluir){
+        if (id == R.id.detalhar){
+            AdapterView.AdapterContextMenuInfo menuInfo =
+                    (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            final Despesa despesaDetalhe = despesasfiltradas.get(menuInfo.position);
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setTitle("Sobre a Despesa:")
+                    .setMessage("Descrição: "+despesaDetalhe.getDescricao()+"\n"
+                            +"Valor: "+despesaDetalhe.getValor()+"\n"
+                            +"Categória: "+despesaDetalhe.getCategoria()+"\n"
+                            +"Tipo: "+despesaDetalhe.getTipo())
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).create();
+            dialog.show();
+
+            return true;
+        }
+        else if (id == R.id.Excluir){
             AdapterView.AdapterContextMenuInfo menuInfo =
                     (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
             final Despesa despesaExcluir = despesasfiltradas.get(menuInfo.position);

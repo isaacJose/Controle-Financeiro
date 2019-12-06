@@ -3,6 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/detalhar"
+        android:title="@string/detalhe" />
+    <item
         android:id="@+id/Excluir"
         android:title="@string/excluir" />
     <item

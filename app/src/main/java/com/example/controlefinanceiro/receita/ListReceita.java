@@ -102,9 +102,7 @@ public class ListReceita extends AppCompatActivity {
     public void buscarReceita(String nome){
         receitasfiltradas.clear();
         for(Receita receita: receitas){
-            if(receita.getDescricao().toLowerCase().contains(nome.toLowerCase()) ||
-                    receita.getTipo().toLowerCase().contains(nome.toLowerCase()) ||
-                    receita.getCategoria().toLowerCase().contains(nome.toLowerCase())){ //deixando letras minúsculas e verificando se nome e descrição
+            if(receita.getDescricao().toLowerCase().contains(nome.toLowerCase())){ //deixando letras minúsculas e verificando se nome e descrição
                 receitasfiltradas.add(receita);
             }
         }
@@ -119,7 +117,29 @@ public class ListReceita extends AppCompatActivity {
 
     public boolean onContextItemSelected(MenuItem item){
         int id = item.getItemId();
-        if (id == R.id.excluir){
+
+        if (id == R.id.detalhar){
+            AdapterView.AdapterContextMenuInfo menuInfo =
+                    (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            final Receita receitaDetalhe = receitasfiltradas.get(menuInfo.position);
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setTitle("Sobre a Receita:")
+                    .setMessage("Descrição: "+receitaDetalhe.getDescricao()+"\n"
+                                +"Valor: "+receitaDetalhe.getValor()+"\n"
+                                +"Categória: "+receitaDetalhe.getCategoria()+"\n"
+                                +"Tipo: "+receitaDetalhe.getTipo())
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).create();
+            dialog.show();
+
+            return true;
+        }
+
+        else if (id == R.id.excluir){
             AdapterView.AdapterContextMenuInfo menuInfo =
                     (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 

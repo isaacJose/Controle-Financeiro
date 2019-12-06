@@ -35,13 +35,13 @@ public class ReceitaAdapter extends ArrayAdapter<Receita> {
 
         DecimalFormat df = new DecimalFormat("###,##0.00"); //Própria função do Java
         TextView valor = linhareceitas.findViewById(R.id.tv_valor);
-        TextView categoria = linhareceitas.findViewById(R.id.tv_categoria);
-        TextView tipo = linhareceitas.findViewById(R.id.tv_tipo);
+        //TextView categoria = linhareceitas.findViewById(R.id.tv_categoria);
+        //TextView tipo = linhareceitas.findViewById(R.id.tv_tipo);
 
         descricao.setText(listaReceitas.get(position).getDescricao());
         valor.setText(df.format(listaReceitas.get(position).getValor()));
-        categoria.setText(listaReceitas.get(position).getCategoria());
-        tipo.setText(listaReceitas.get(position).getTipo());
+        //categoria.setText(listaReceitas.get(position).getCategoria());
+        //tipo.setText(listaReceitas.get(position).getTipo());
 
         return linhareceitas;
 

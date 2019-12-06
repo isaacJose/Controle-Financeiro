@@ -51,4 +51,6 @@
     <string name="info">º Sistema de Controle Financeiro desenvolvido para a disciplina de Dispositivos Móveis.</string>
     <string name="menuprincipal">Menu Principal</string>
 
+    <string name="detalhe">Detalhar</string>
+
 </resources>

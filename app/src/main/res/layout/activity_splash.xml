@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="344dp"
-        android:layout_height="316dp"
+        android:layout_width="332dp"
+        android:layout_height="275dp"
         android:layout_marginStart="49dp"
         android:layout_marginLeft="49dp"
         android:layout_marginTop="217dp"
@@ -20,8 +20,9 @@
         android:foregroundGravity="center_vertical|center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.085"
+        app:layout_constraintVertical_bias="0.266"
         app:srcCompat="@drawable/img" />
 </androidx.constraintlayout.widget.ConstraintLayout>

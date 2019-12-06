@@ -34,13 +34,13 @@ public class DespesaAdapter extends ArrayAdapter<Despesa> {
 
         DecimalFormat df = new DecimalFormat("###,##0.00"); //Própria função do Java
         TextView valor = linhadespesas.findViewById(R.id.tv_valor);
-        TextView categoria = linhadespesas.findViewById(R.id.tv_categoria);
-        TextView tipo = linhadespesas.findViewById(R.id.tv_tipo);
+        //TextView categoria = linhadespesas.findViewById(R.id.tv_categoria);
+        //TextView tipo = linhadespesas.findViewById(R.id.tv_tipo);
 
         descricao.setText(listaDespesas.get(position).getDescricao());
         valor.setText(df.format(listaDespesas.get(position).getValor()));
-        categoria.setText(listaDespesas.get(position).getCategoria());
-        tipo.setText(listaDespesas.get(position).getTipo());
+        //categoria.setText(listaDespesas.get(position).getCategoria());
+        //tipo.setText(listaDespesas.get(position).getTipo());
 
         return linhadespesas;
 
