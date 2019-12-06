@@ -24,6 +24,7 @@ import com.example.controlefinanceiro.R;
 import com.example.controlefinanceiro.receita.CadReceita;
 
 import java.text.NumberFormat;
+import java.util.Locale;
 
 public class CadDespesa extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
@@ -148,7 +149,7 @@ public class CadDespesa extends AppCompatActivity implements AdapterView.OnItemS
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                final Locale locale = new Locale("en","US");
                 //SE A STRING ATUAL FOR DIFERENTE DE ""
                 if (!s.equals(current)) {
 
@@ -156,7 +157,7 @@ public class CadDespesa extends AppCompatActivity implements AdapterView.OnItemS
 
                     String cleanString = s.toString().replaceAll(getString(R.string.charMoeda), "");
                     double parsed = Double.parseDouble(cleanString);
-                    String formattedString = NumberFormat.getCurrencyInstance().format((parsed / 100));
+                    String formattedString = NumberFormat.getCurrencyInstance(locale).format((parsed / 100));
 
                     current = formattedString;
 

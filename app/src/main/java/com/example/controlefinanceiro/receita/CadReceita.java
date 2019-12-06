@@ -137,14 +137,15 @@ public class CadReceita extends AppCompatActivity implements AdapterView.OnItemS
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                final Locale locale = new Locale("en","US");
                 //SE A STRING ATUAL FOR DIFERENTE DE ""
                 if (!s.equals(current)) {
                     //Montando a máscara
                     et_valor.removeTextChangedListener(this);
-                    String cleanString = s.toString().replaceAll(getString(R.string.charMoeda), "");
 
+                    String cleanString = s.toString().replaceAll(getString(R.string.charMoeda), "");
                     double parsed = Double.parseDouble(cleanString);
-                    String formattedString = NumberFormat.getCurrencyInstance().format((parsed/100));
+                    String formattedString = NumberFormat.getCurrencyInstance(locale).format((parsed/100));
 
                     current = formattedString;
 
@@ -180,7 +181,7 @@ public class CadReceita extends AppCompatActivity implements AdapterView.OnItemS
                 else if (receita == null) {
                         Receita receita = new Receita();
                         receita.setDescricao(et_descricao.getText().toString());
-                        receita.setValor(Double.parseDouble(et_valor.getText().toString().replaceAll(getString(R.string.charMoeda),""))/100);
+                        receita.setValor(Double.parseDouble(et_valor.getText().toString().replaceAll(getString(R.string.charMoeda),"")) / 100);
                         receita.setCategoria(categoriaReceita);
                         receita.setTipo(tipo);
                         long id = receitaDAO.inserir(receita);

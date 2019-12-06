@@ -6,9 +6,9 @@
         android:id="@+id/detalhar"
         android:title="@string/detalhe" />
     <item
-        android:id="@+id/Excluir"
-        android:title="@string/excluir" />
-    <item
         android:id="@+id/Atualizar"
         android:title="@string/atualizar" />
+    <item
+        android:id="@+id/Excluir"
+        android:title="@string/excluir" />
 </menu>
