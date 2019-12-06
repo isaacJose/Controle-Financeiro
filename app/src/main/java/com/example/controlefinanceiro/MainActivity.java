@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.example.controlefinanceiro.despesa.DespesaDAO;
 import com.example.controlefinanceiro.despesa.DespesaView;
+import com.example.controlefinanceiro.despesa.ListDespesa;
+import com.example.controlefinanceiro.receita.ListReceita;
 import com.example.controlefinanceiro.receita.ReceitaDAO;
 import com.example.controlefinanceiro.receita.ReceitaView;
 
@@ -53,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         float receita = Float.parseFloat(df.format(receitaDAO.totalReceita()).replaceAll(getString(R.string.charMoeda),""))/100;
         float despesa = Float.parseFloat(df.format(despesaDAO.totalDespesa()).replaceAll(getString(R.string.charMoeda),""))/100;
 
-        tv_saldoTotal.setText(String.valueOf(receita-despesa));
-        if (Float.parseFloat(tv_saldoTotal.getText().toString()) > 0){
+        tv_saldoTotal.setText(df.format(receita-despesa));
+        if (Float.parseFloat(tv_saldoTotal.getText().toString().replaceAll("[R,$.]","")) >= 0){
             tv_saldoTotal.setTextColor(Color.parseColor("#41F304"));
         }
         else {
@@ -127,8 +129,12 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
                         }
+                    })
+                    .setNegativeButton("Todas", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(MainActivity.this, ListReceita.class)); }
                     }).show();
             return true;
         }
@@ -142,8 +148,12 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
                         }
+                    })
+                    .setNegativeButton("Todas", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(MainActivity.this, ListDespesa.class)); }
                     }).show();
             return true;
         }

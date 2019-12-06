@@ -70,19 +70,23 @@
         app:layout_constraintTop_toBottomOf="@+id/et_descricao" />
 
     <LinearLayout
-        android:layout_width="404dp"
+        android:layout_width="0dp"
         android:layout_height="57dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="248dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal|center_vertical"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-        <Button
+        <!--<Button
             android:id="@+id/bt_voltar"
             android:layout_width="211dp"
             android:layout_height="wrap_content"
@@ -93,11 +97,11 @@
             android:textAllCaps="false"
             android:textColor="@color/branco"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold" /> -->
 
         <Button
             android:id="@+id/bt_cadastrar"
-            android:layout_width="211dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:background="@color/cinza"

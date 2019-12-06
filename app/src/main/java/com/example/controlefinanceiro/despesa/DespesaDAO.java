@@ -34,7 +34,7 @@ public class DespesaDAO {
             Despesa despesa = new Despesa();
             despesa.setId(cursor.getInt(0));
             despesa.setDescricao(cursor.getString(1));
-            despesa.setValor(cursor.getFloat(2));
+            despesa.setValor(cursor.getDouble(2));
             despesa.setCategoria(cursor.getString(3));
             despesa.setTipo(cursor.getString(4));
 
@@ -57,7 +57,7 @@ public class DespesaDAO {
         Cursor cursor = db.query("despesa",new String[]{"valor"},
                 null, null, null, null, null);
         while(cursor.moveToNext()) {
-            totalDespesa += cursor.getFloat(0);
+            totalDespesa += cursor.getDouble(0);
         }
         return totalDespesa;
     }

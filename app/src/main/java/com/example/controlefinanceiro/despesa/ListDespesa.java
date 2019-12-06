@@ -23,7 +23,7 @@ import java.util.List;
 
 public class ListDespesa extends AppCompatActivity {
 
-    private ImageButton bt_voltar;
+    //private ImageButton bt_voltar;
     private ListView lv_despesas;
     private DespesaDAO despesaDAO;
     List<Despesa> despesas;
@@ -37,6 +37,9 @@ public class ListDespesa extends AppCompatActivity {
 
         configurarBotoes(); acaoBotao();
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
+        getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
+
         despesaDAO = new DespesaDAO(this);
         despesas = despesaDAO.obterTodos();
         despesasfiltradas.addAll(despesas);
@@ -44,22 +47,23 @@ public class ListDespesa extends AppCompatActivity {
         DespesaAdapter despesaAdapter = new DespesaAdapter(this,despesasfiltradas);
         lv_despesas.setAdapter(despesaAdapter);
         registerForContextMenu(lv_despesas);
+
     }
 
     private void configurarBotoes() {
 
         lv_despesas = findViewById(R.id.lv_despesas);
-        bt_voltar = findViewById(R.id.bt_voltar);
+        //bt_voltar = findViewById(R.id.bt_voltar);
     }
 
     private void acaoBotao(){
 
-        bt_voltar.setOnClickListener(new View.OnClickListener() {
+        /*bt_voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
-        });
+        });*/
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -96,6 +100,19 @@ public class ListDespesa extends AppCompatActivity {
     }
     public void cadastrar(MenuItem menuItem){
         startActivity(new Intent(ListDespesa.this, CadDespesa.class));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { //Botão adicional na ToolBar
+        switch (item.getItemId()) {
+            case R.id.menuPrincipal: finish(); break;
+
+            case android.R.id.home:  //ID do seu botão (gerado automaticamente pelo android, usando como está, deve funcionar
+                finish();
+                break;
+            default:break;
+        }
+        return true;
     }
 
     public void onCreateContextMenu(ContextMenu contextMenu, View v, ContextMenu.ContextMenuInfo menuInfo){
@@ -150,5 +167,10 @@ public class ListDespesa extends AppCompatActivity {
         despesasfiltradas.clear();
         despesasfiltradas.addAll(despesas);
         lv_despesas.invalidateViews();
+    }
+
+    @Override
+    public void onBackPressed(){
+        finish();
     }
 }

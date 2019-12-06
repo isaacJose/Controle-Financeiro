@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.example.controlefinanceiro.R;
 
 import java.text.NumberFormat;
+import java.util.Locale;
 
 public class CadReceita extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -34,7 +36,7 @@ public class CadReceita extends AppCompatActivity implements AdapterView.OnItemS
     private String tipo;
     private EditText et_valor;
     private Button bt_cadastrar;
-    private Button bt_voltar;
+    //private Button bt_voltar;
 
     private ReceitaDAO receitaDAO;
     private Receita receita = null;
@@ -46,6 +48,9 @@ public class CadReceita extends AppCompatActivity implements AdapterView.OnItemS
 
         configurarBotoes();
         acaoBotao();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
+        getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
 
         receitaDAO = new ReceitaDAO(this);
 
@@ -86,8 +91,10 @@ public class CadReceita extends AppCompatActivity implements AdapterView.OnItemS
     protected void onResume(){
         super.onResume();
 
-        catReceita.setOnItemSelectedListener(this);
-        carregarDadosSpinner();
+        if (categoriaReceita == null){
+            catReceita.setOnItemSelectedListener(this);
+            carregarDadosSpinner();
+        }
 
         rb_fixa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,12 +120,12 @@ public class CadReceita extends AppCompatActivity implements AdapterView.OnItemS
         rb_group = findViewById(R.id.rb_group);
         catReceita = findViewById(R.id.catDespesa);
         bt_cadastrar = findViewById(R.id.bt_cadastrar);
-        bt_voltar = findViewById(R.id.bt_voltar);
+        //bt_voltar = findViewById(R.id.bt_voltar);
 
         catReceita.setOnItemSelectedListener(this);
         carregarDadosSpinner();
 
-        //MODIFICAR VALORES DO FINANCIAMENTO EM TEMPO DE EXECUÇÃO
+        //MODIFICAR O VALOR EM TEMPO DE EXECUÇÃO
         et_valor.addTextChangedListener(new TextWatcher() {
 
             private String current = "";
@@ -130,21 +137,21 @@ public class CadReceita extends AppCompatActivity implements AdapterView.OnItemS
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 //SE A STRING ATUAL FOR DIFERENTE DE ""
                 if (!s.equals(current)) {
-
+                    //Montando a máscara
                     et_valor.removeTextChangedListener(this);
-
                     String cleanString = s.toString().replaceAll(getString(R.string.charMoeda), "");
+
                     double parsed = Double.parseDouble(cleanString);
-                    String formattedString = NumberFormat.getCurrencyInstance().format((parsed / 100));
+                    String formattedString = NumberFormat.getCurrencyInstance().format((parsed/100));
 
                     current = formattedString;
 
                     et_valor.setText(formattedString);
                     et_valor.setSelection(formattedString.length());
                     et_valor.addTextChangedListener(this);
+
                 }
             }
 
@@ -173,7 +180,7 @@ public class CadReceita extends AppCompatActivity implements AdapterView.OnItemS
                 else if (receita == null) {
                         Receita receita = new Receita();
                         receita.setDescricao(et_descricao.getText().toString());
-                        receita.setValor((Float.parseFloat(et_valor.getText().toString().replaceAll(getString(R.string.charMoeda), ""))) / 100);
+                        receita.setValor(Double.parseDouble(et_valor.getText().toString().replaceAll(getString(R.string.charMoeda),""))/100);
                         receita.setCategoria(categoriaReceita);
                         receita.setTipo(tipo);
                         long id = receitaDAO.inserir(receita);
@@ -183,7 +190,7 @@ public class CadReceita extends AppCompatActivity implements AdapterView.OnItemS
 
                 else {
                     receita.setDescricao(et_descricao.getText().toString());
-                    receita.setValor((Float.parseFloat(et_valor.getText().toString().replaceAll(getString(R.string.charMoeda), ""))) / 100);
+                    receita.setValor((Double.parseDouble(et_valor.getText().toString().replaceAll(getString(R.string.charMoeda), ""))) / 100);
                     receita.setCategoria(categoriaReceita);
                     receita.setTipo(tipo);
                     receitaDAO.atualizar(receita);
@@ -193,13 +200,24 @@ public class CadReceita extends AppCompatActivity implements AdapterView.OnItemS
             }
         });
 
-        bt_voltar.setOnClickListener(new View.OnClickListener() {
+        /*bt_voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
-        });
+        });*/
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { //Botão adicional na ToolBar
+        switch (item.getItemId()) {
+            case android.R.id.home:  //ID do seu botão (gerado automaticamente pelo android, usando como está, deve funcionar
+                finish();
+                break;
+            default:break;
+        }
+        return true;
     }
 
     private boolean validaCampos() {
@@ -267,6 +285,11 @@ public class CadReceita extends AppCompatActivity implements AdapterView.OnItemS
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        finish();
     }
 
 }

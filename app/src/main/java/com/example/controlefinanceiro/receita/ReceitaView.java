@@ -17,7 +17,7 @@ public class ReceitaView extends AppCompatActivity {
     private Button bt_cadReceita;
     private Button bt_listReceita;
     private Button bt_geRelatorio;
-    private Button bt_voltar;
+    //private Button bt_voltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +26,16 @@ public class ReceitaView extends AppCompatActivity {
 
         configurarBotoes(); acaoBotao();
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
+        getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
+
     }
 
     private void configurarBotoes() {
 
         bt_cadReceita = findViewById(R.id.bt_cadReceita);
         bt_listReceita = findViewById(R.id.bt_listReceita);
-        bt_voltar = findViewById(R.id.bt_voltar);
+        //bt_voltar = findViewById(R.id.bt_voltar);
     }
 
     private void acaoBotao(){
@@ -50,12 +53,12 @@ public class ReceitaView extends AppCompatActivity {
             }
         });
 
-        bt_voltar.setOnClickListener(new View.OnClickListener() {
+        /*bt_voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
-        });
+        });*/
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -65,13 +68,20 @@ public class ReceitaView extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+    public boolean onOptionsItemSelected(MenuItem item) { //Botão adicional na ToolBar
+        switch (item.getItemId()) {
+            case R.id.menuPrincipal: finish(); break;
 
-        if (id == R.id.menuPrincipal) {
-            finish();
-            return true;
+            case android.R.id.home:  //ID do seu botão (gerado automaticamente pelo android, usando como está, deve funcionar
+                finish();
+                break;
+            default:break;
         }
-        return onOptionsItemSelected(item);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed(){
+       finish();
     }
 }

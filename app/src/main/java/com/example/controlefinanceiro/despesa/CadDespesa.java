@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,7 +35,7 @@ public class CadDespesa extends AppCompatActivity implements AdapterView.OnItemS
     private String tipo;
     private EditText et_valor;
     private Button bt_cadastrar;
-    private Button bt_voltar;
+    //private Button bt_voltar;
 
     private DespesaDAO despesaDAO;
     private Despesa despesa;
@@ -46,6 +47,9 @@ public class CadDespesa extends AppCompatActivity implements AdapterView.OnItemS
 
         configurarBotoes();
         acaoBotao();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
+        getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
 
         despesaDAO = new DespesaDAO(this);
 
@@ -85,8 +89,10 @@ public class CadDespesa extends AppCompatActivity implements AdapterView.OnItemS
     protected void onResume(){
         super.onResume();
 
-        catDespesa.setOnItemSelectedListener(this);
-        carregarDadosSpinner();
+        if (categoriaDespesa == null){
+            catDespesa.setOnItemSelectedListener(this);
+            carregarDadosSpinner();
+        }
 
         rb_fixa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +110,19 @@ public class CadDespesa extends AppCompatActivity implements AdapterView.OnItemS
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { //Botão adicional na ToolBar
+        switch (item.getItemId()) {
+            case R.id.menuPrincipal: finish(); break;
+
+            case android.R.id.home:  //ID do seu botão (gerado automaticamente pelo android, usando como está, deve funcionar
+                finish();
+                break;
+            default:break;
+        }
+        return true;
+    }
+
     private void configurarBotoes() {
         et_descricao = findViewById(R.id.et_descricao);
         et_valor = findViewById(R.id.et_valor);
@@ -112,12 +131,12 @@ public class CadDespesa extends AppCompatActivity implements AdapterView.OnItemS
         rb_group = findViewById(R.id.rb_group);
         catDespesa = findViewById(R.id.catDespesa);
         bt_cadastrar = findViewById(R.id.bt_cadastrar);
-        bt_voltar = findViewById(R.id.bt_voltar);
+        //bt_voltar = findViewById(R.id.bt_voltar);
 
         catDespesa.setOnItemSelectedListener(this);
         carregarDadosSpinner();
 
-        //MODIFICAR VALORES DO FINANCIAMENTO EM TEMPO DE EXECUÇÃO
+        //MODIFICAR VALOR EM TEMPO DE EXECUÇÃO
         et_valor.addTextChangedListener(new TextWatcher() {
 
             private String current = "";
@@ -171,7 +190,7 @@ public class CadDespesa extends AppCompatActivity implements AdapterView.OnItemS
                 else if (despesa == null){
                     Despesa despesa = new Despesa();
                     despesa.setDescricao(et_descricao.getText().toString());
-                    despesa.setValor((Float.parseFloat(et_valor.getText().toString().replaceAll(getString(R.string.charMoeda), ""))) / 100);
+                    despesa.setValor((Double.parseDouble(et_valor.getText().toString().replaceAll(getString(R.string.charMoeda), ""))) / 100);
                     despesa.setCategoria(categoriaDespesa);
                     despesa.setTipo(tipo);
                     long id = despesaDAO.inserir(despesa);
@@ -182,7 +201,7 @@ public class CadDespesa extends AppCompatActivity implements AdapterView.OnItemS
 
                 else {
                         despesa.setDescricao(et_descricao.getText().toString());
-                        despesa.setValor((Float.parseFloat(et_valor.getText().toString().replaceAll(getString(R.string.charMoeda), ""))) / 100);
+                        despesa.setValor((Double.parseDouble(et_valor.getText().toString().replaceAll(getString(R.string.charMoeda), ""))) / 100);
                         despesa.setCategoria(categoriaDespesa);
                         despesa.setTipo(tipo);
                         despesaDAO.atualizar(despesa);
@@ -191,12 +210,12 @@ public class CadDespesa extends AppCompatActivity implements AdapterView.OnItemS
                 }
             }
         });
-        bt_voltar.setOnClickListener(new View.OnClickListener() {
+        /*bt_voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
-        });
+        });*/
     }
 
 
@@ -267,5 +286,10 @@ public class CadDespesa extends AppCompatActivity implements AdapterView.OnItemS
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        finish();
     }
 }

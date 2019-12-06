@@ -17,7 +17,7 @@ public class DespesaView extends AppCompatActivity {
     private Button bt_cadDespesa;
     private Button bt_listDespesa;
     private Button bt_geRelatorio;
-    private Button bt_voltar;
+    //private Button bt_voltar;
 
 
     @Override
@@ -26,6 +26,10 @@ public class DespesaView extends AppCompatActivity {
         setContentView(R.layout.activity_despesa_view);
 
         configurarBotoes(); acaoBotao();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
+        getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
+
     }
 
     private void configurarBotoes() {
@@ -33,7 +37,7 @@ public class DespesaView extends AppCompatActivity {
         bt_cadDespesa = findViewById(R.id.bt_cadDespesa);
         bt_listDespesa = findViewById(R.id.bt_listDespesa);
         bt_geRelatorio = findViewById(R.id.bt_gerDespesa);
-        bt_voltar = findViewById(R.id.bt_voltar);
+        //bt_voltar = findViewById(R.id.bt_voltar);
     }
 
     private void acaoBotao(){
@@ -52,12 +56,12 @@ public class DespesaView extends AppCompatActivity {
             }
         });
 
-        bt_voltar.setOnClickListener(new View.OnClickListener() {
+        /*bt_voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
-        });
+        });*/
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -67,14 +71,21 @@ public class DespesaView extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+    public boolean onOptionsItemSelected(MenuItem item) { //Botão adicional na ToolBar
+        switch (item.getItemId()) {
+            case R.id.menuPrincipal: finish(); break;
 
-        if (id == R.id.menuPrincipal) {
-            finish();
-            return true;
+            case android.R.id.home:  //ID do seu botão (gerado automaticamente pelo android, usando como está, deve funcionar
+                finish();
+                break;
+            default:break;
         }
-        return onOptionsItemSelected(item);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed(){
+        finish();
     }
 
 }

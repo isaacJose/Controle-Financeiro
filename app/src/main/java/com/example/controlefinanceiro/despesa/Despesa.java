@@ -8,7 +8,7 @@ public class Despesa implements Serializable {
 
     private Integer id;
     private String descricao;
-    private float valor;
+    private double valor;
     private String tipo;
     private String categoria;
 
@@ -28,11 +28,11 @@ public class Despesa implements Serializable {
         this.descricao = descricao;
     }
 
-    public float getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 

@@ -23,8 +23,7 @@ import java.util.List;
 
 public class ListReceita extends AppCompatActivity {
 
-    private ImageButton bt_voltar;
-
+    //private ImageButton bt_voltar;
     private ListView lv_receitas;
     private ReceitaDAO receitaDAO;
     private List<Receita> receitas;
@@ -36,6 +35,9 @@ public class ListReceita extends AppCompatActivity {
         setContentView(R.layout.activity_list_receita);
 
         configurarBotoes(); acaoBotao();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
+        getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
 
         receitaDAO = new ReceitaDAO(this);
         receitas = receitaDAO.obterTodos();
@@ -49,17 +51,17 @@ public class ListReceita extends AppCompatActivity {
 
     private void configurarBotoes() {
         lv_receitas = findViewById(R.id.lv_receitas);
-        bt_voltar = findViewById(R.id.bt_voltar);
+        //bt_voltar = findViewById(R.id.bt_voltar);
     }
 
     private void acaoBotao(){
 
-        bt_voltar.setOnClickListener(new View.OnClickListener() {
+        /*bt_voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
-        });
+        });*/
 
     }
 
@@ -87,6 +89,16 @@ public class ListReceita extends AppCompatActivity {
         startActivity(new Intent(this,CadReceita.class));
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { //Botão adicional na ToolBar
+        switch (item.getItemId()) {
+            case android.R.id.home:  //ID do seu botão (gerado automaticamente pelo android, usando como está, deve funcionar
+                finish();
+                break;
+            default:break;
+        }
+        return true;
+    }
     public void buscarReceita(String nome){
         receitasfiltradas.clear();
         for(Receita receita: receitas){
@@ -147,5 +159,10 @@ public class ListReceita extends AppCompatActivity {
         receitasfiltradas.clear();
         receitasfiltradas.addAll(receitas);
         lv_receitas.invalidateViews();
+    }
+
+    @Override
+    public void onBackPressed(){
+        finish();
     }
 }

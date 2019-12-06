@@ -33,7 +33,7 @@ public class ReceitaDAO {
             Receita receita = new Receita();
             receita.setId(cursor.getInt(0));
             receita.setDescricao(cursor.getString(1));
-            receita.setValor(cursor.getFloat(2));
+            receita.setValor(cursor.getDouble(2));
             receita.setCategoria(cursor.getString(3));
             receita.setTipo(cursor.getString(4));
 
@@ -56,7 +56,7 @@ public class ReceitaDAO {
         Cursor cursor = db.query("receita",new String[]{"valor"},
                 null, null, null, null, null);
         while(cursor.moveToNext()) {
-            totalReceita += cursor.getFloat(0);
+            totalReceita += cursor.getDouble(0);
         }
         return totalReceita;
     }
