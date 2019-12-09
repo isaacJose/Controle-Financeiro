@@ -51,28 +51,30 @@
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/fabPrincipal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:menu_fab_label="Menu"
-        app:menu_colorPressed="@color/colorPrimary"
-        app:menu_colorNormal="@color/colorPrimary"
+        android:layout_height="502dp"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true">
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+        app:menu_colorNormal="@color/colorPrimary"
+        app:menu_colorPressed="@color/colorPrimary"
+        app:menu_fab_label="Menu">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/receita"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:fab_label="@string/receita"
             android:src="@drawable/money"
-            app:fab_colorNormal="@color/verde"/>
+            app:fab_colorNormal="@color/verde"
+            app:fab_label="@string/receita" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/despesa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:fab_label="@string/despesa"
             android:src="@drawable/money"
-            app:fab_colorNormal="@color/vermelho"/>
+            app:fab_colorNormal="@color/vermelho"
+            app:fab_label="@string/despesa" />
 
     </com.github.clans.fab.FloatingActionMenu>
 

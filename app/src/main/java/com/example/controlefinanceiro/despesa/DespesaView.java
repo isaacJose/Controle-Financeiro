@@ -64,17 +64,9 @@ public class DespesaView extends AppCompatActivity {
         });*/
     }
 
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_principal,menu);
-        return true;
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { //Botão adicional na ToolBar
         switch (item.getItemId()) {
-            case R.id.menuPrincipal: finish(); break;
-
             case android.R.id.home:  //ID do seu botão (gerado automaticamente pelo android, usando como está, deve funcionar
                 finish();
                 break;

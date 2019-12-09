@@ -26,9 +26,6 @@
         <activity android:name=".receita.ListReceita" />
         <activity android:name=".receita.CadReceita" />
         <activity android:name=".receita.ReceitaView" />
-        <activity android:name=".MainActivity">
-
-        </activity>
     </application>
 
 </manifest>
