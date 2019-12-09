@@ -20,7 +20,7 @@ public class Splash extends AppCompatActivity implements Runnable {
     @Override
     public void run() {
 
-        startActivity(new Intent(Splash.this, MainActivity.class));
+        startActivity(new Intent(Splash.this, SpeedDial.class));
         finish();
     }
 }

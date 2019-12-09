@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SpeedDial">
+
+    <LinearLayout
+        android:layout_width="413dp"
+        android:layout_height="181dp"
+        android:layout_marginBottom="492dp"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/tv_saldoTotal"
+            android:layout_width="401dp"
+            android:layout_height="103dp"
+            android:foregroundGravity="center_vertical|center_horizontal"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:paddingLeft="50dp"
+            android:paddingTop="40dp"
+            android:paddingRight="50dp"
+            android:text="TextView"
+            android:textColor="@color/branco"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center_vertical|center_horizontal"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:paddingBottom="60dp"
+            android:text="@string/saldo"
+            android:textColor="@color/branco" />
+    </LinearLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fabPrincipal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:menu_fab_label="Menu"
+        app:menu_colorPressed="@color/colorPrimary"
+        app:menu_colorNormal="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/receita"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fab_label="@string/receita"
+            android:src="@drawable/money"
+            app:fab_colorNormal="@color/verde"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/despesa"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fab_label="@string/despesa"
+            android:src="@drawable/money"
+            app:fab_colorNormal="@color/vermelho"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

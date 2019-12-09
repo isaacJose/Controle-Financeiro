@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SpeedDial"></activity>
         <activity android:name=".despesa.CadDespesa" />
         <activity android:name=".despesa.ListDespesa" />
         <activity android:name=".despesa.DespesaView" />
@@ -26,11 +27,7 @@
         <activity android:name=".receita.CadReceita" />
         <activity android:name=".receita.ReceitaView" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
